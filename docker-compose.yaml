@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    env_file:
-      - .env
     ports:
       - "127.0.0.1:7011:5000"
     restart: always

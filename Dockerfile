@@ -9,7 +9,6 @@ ENV UV_LINK_MODE=copy
 
 ######### MAIN FILES ##########
 WORKDIR /main
-COPY .env .env
 COPY app app
 COPY configs/gunicorn.conf.py gunicorn.conf.py
 COPY pyproject.toml pyproject.toml
