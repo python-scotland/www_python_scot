@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: "scot-python"
+    container_name: "python_scot"
     build:
       context: .
       dockerfile: Dockerfile
