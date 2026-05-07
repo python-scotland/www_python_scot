@@ -1,0 +1,35 @@
+{% extends 'extends/main.html' %}
+
+{% block content %}
+
+    <section>
+
+        <img
+                src="{{ url_for('static', filename='emoji_icons/pinned_emoji_48.png') }}"
+                alt="Updates Icon"
+                class="my-12 mx-auto"
+                style="height: 30px; width: 30px;"
+        />
+
+    </section>
+
+    {% for article in articles %}
+
+        <section class="mb-6">
+
+            <div class="flex flex-col gap-4">
+
+                <div class="rounded-2xl bg-gray-50 p-10 shadow-xl">
+
+                    {{ article.render() }}
+
+                </div>
+
+            </div>
+
+        </section>
+
+    {% endfor %}
+
+
+{% endblock %}
