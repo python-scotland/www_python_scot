@@ -20,4 +20,4 @@ RUN uv sync --no-dev
 # Place executables in the environment at the front of the path
 ENV PATH="/main/.venv/bin:$PATH"
 
-ENTRYPOINT ["gunicorn"]
+ENTRYPOINT ["granian", "--interface", "wsgi", "--factory", "app:create_app", "--host", "0.0.0.0"]
