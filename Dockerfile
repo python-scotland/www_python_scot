@@ -10,7 +10,6 @@ ENV UV_LINK_MODE=copy
 ######### MAIN FILES ##########
 WORKDIR /main
 COPY app app
-COPY configs/gunicorn.conf.py gunicorn.conf.py
 COPY pyproject.toml pyproject.toml
 COPY uv.lock uv.lock
 ###############################
