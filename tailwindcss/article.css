@@ -27,7 +27,7 @@ article p {
 
 article ul {
     @apply
-        ml-2
+    ml-2
     list-disc
     list-inside;
 }
@@ -39,6 +39,6 @@ article li {
 
 article img {
     @apply
-        my-2
+    my-4
     rounded-2xl;
 }
