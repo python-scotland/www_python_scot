@@ -48,7 +48,7 @@ def create_app():
             [
                 e.Page(
                     title="Updates | Python Scotland",
-                    description="Stay updated with Python Scotland's latest news, events, and initiatives.",
+                    description="Stay updated with the latest at Python Scotland.",
                     keywords=["Python", "Scotland", "Community", "Updates", "Events"],
                 ),
             ]
