@@ -1,0 +1,56 @@
+{% extends 'extends/main.html' %}
+
+{% block content %}
+
+    <section class="mb-6">
+
+        <div class="flex flex-col gap-4">
+
+            <div class="rounded-2xl bg-gray-50 p-10 shadow-xl">
+
+                {{ article.render() }}
+
+                <div class="flex gap-2">
+
+                    <a href="{{ url_for('updates') }}" class="btn-a">
+                        <img
+                                src="{{ url_for('static', filename='emoji_icons/back_emoji_48.png') }}"
+                                alt="Updates Icon"
+                                class=""
+                                style="height: 18px; width: 18px;"
+                        />
+                        Back to Updates
+                    </a>
+
+
+                    <button
+                            @click="copyArticleLink(`https://python.scot{{ url_for('updates_article', article_slug=article_slug) }}`,'{{ article_slug }}')"
+                            class="btn-a"
+                    >
+                        <img
+                                src="{{ url_for('static', filename='emoji_icons/link_emoji_48.png') }}"
+                                alt="Updates Icon"
+                                style="height: 18px; width: 18px;"
+                                x-show="copying === ''"
+                                x-cloak
+                        />
+                        <img
+                                src="{{ url_for('static', filename='emoji_icons/tick_emoji_48.png') }}"
+                                alt="Updates Icon"
+                                style="height: 18px; width: 18px;"
+                                x-show="copying === '{{ article_slug }}'"
+                                x-cloak
+                        />
+                        Copy Link
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+{% endblock %}

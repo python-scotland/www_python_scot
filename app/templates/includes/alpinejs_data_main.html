@@ -6,6 +6,23 @@
             menuOpen: false,
             windowWidth: window.innerWidth,
 
+            copying: "",
+
+            timeoutChange(copyingText) {
+                this.copying = copyingText;
+                setTimeout(() => {
+                    this.copying = "";
+                }, 1000);
+            },
+
+            copyArticleLink(articleUrl, articleSlug) {
+                navigator.clipboard.writeText(articleUrl).then(() => {
+                    this.timeoutChange(articleSlug)
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            },
+
             init() {
                 window.addEventListener('resize', () => {
                     this.windowWidth = window.innerWidth;

@@ -2,34 +2,54 @@
 
 {% block content %}
 
-    <section>
+<section>
 
-        <img
-                src="{{ url_for('static', filename='emoji_icons/pinned_emoji_48.png') }}"
-                alt="Updates Icon"
-                class="my-12 mx-auto"
-                style="height: 30px; width: 30px;"
-        />
+    <img
+            src="{{ url_for('static', filename='emoji_icons/pinned_emoji_48.png') }}"
+            alt="Updates Icon"
+            class="my-12 mx-auto"
+            style="height: 30px; width: 30px;"
+    />
 
-    </section>
+</section>
 
-    {% for article in articles %}
+{% for article_slug, article in articles.items() %}
 
-        <section class="mb-6">
+<section class="mb-6">
 
-            <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4">
 
-                <div class="rounded-2xl bg-gray-50 p-10 shadow-xl">
+        <div class="rounded-2xl bg-gray-50 p-10 shadow-xl">
 
-                    {{ article.render() }}
+            {{ article.render() }}
 
-                </div>
+            <button
+                    @click="copyArticleLink(`https://python.scot{{ url_for('updates_article', article_slug=article_slug) }}`,'{{ article_slug }}')"
+                    class="btn-a"
+            >
+                <img
+                        src="{{ url_for('static', filename='emoji_icons/link_emoji_48.png') }}"
+                        alt="Updates Icon"
+                        style="height: 18px; width: 18px;"
+                        x-show="copying === ''"
+                        x-cloak
+                />
+                <img
+                        src="{{ url_for('static', filename='emoji_icons/tick_emoji_48.png') }}"
+                        alt="Updates Icon"
+                        style="height: 18px; width: 18px;"
+                        x-show="copying === '{{ article_slug }}'"
+                        x-cloak
+                />
+                Copy Link
+            </button>
 
-            </div>
+        </div>
 
-        </section>
+    </div>
 
-    {% endfor %}
+</section>
 
+{% endfor %}
 
 {% endblock %}

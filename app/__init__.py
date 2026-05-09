@@ -2,11 +2,16 @@ from flask import Flask, g, render_template, url_for
 from markupsafe import Markup
 from pyhead import Head
 from pyhead import elements as e
+from pyhead.flask import FlaskUrlFor
 
-from app.articles import load_articles
+from app.articles import ARTICLE_LOOKUP, load_all_articles
 from app.config import Config, DebugConfig
+from app.utils import Article
 
-ARTICLES = load_articles()
+OPEN_GRAPH = {
+    "image": FlaskUrlFor('static', filename='img/opengraph.jpg'),
+    "image_alt": "Python Scotland Logo"
+}
 
 def create_app():
     app = Flask(__name__, static_url_path="/")
@@ -25,6 +30,12 @@ def create_app():
                     description="Support Python Scotland by becoming a sponsor or donating to our open cause.",
                     keywords=["Python", "Scotland", "Community", "Sponsor", "Donate"],
                 ),
+                e.SocialMediaCard(
+                    title="Support Our Cause | Python Scotland",
+                    description="Join us in our mission to foster a thriving Python community in Scotland. Become a sponsor or donate today!",
+                    url="https://python.scot/support-us",
+                    **OPEN_GRAPH
+                )
             ]
         )
         return render_template("pages/support-us.html")
@@ -38,6 +49,12 @@ def create_app():
                     description="Python Scotland's mission is to empower both beginner and expert Pythonistas across Scotland.",
                     keywords=["Python", "Scotland", "Community", "Mission", "Vision"],
                 ),
+                e.SocialMediaCard(
+                    title="Our Mission | Python Scotland",
+                    description="Python Scotland's mission is to empower both beginner and expert Pythonistas across Scotland.",
+                    url="https://python.scot/support-us",
+                    **OPEN_GRAPH
+                )
             ]
         )
         return render_template("pages/our-mission.html")
@@ -51,9 +68,40 @@ def create_app():
                     description="Stay updated with the latest at Python Scotland.",
                     keywords=["Python", "Scotland", "Community", "Updates", "Events"],
                 ),
+                e.SocialMediaCard(
+                    title="Updates | Python Scotland",
+                    description="Stay updated with the latest at Python Scotland.",
+                    url="https://python.scot/support-us",
+                    **OPEN_GRAPH
+                )
             ]
         )
-        return render_template("pages/updates.html", articles=ARTICLES)
+        return render_template("pages/updates.html", articles=ARTICLE_LOOKUP)
+
+    @app.route("/updates/<string:article_slug>")
+    def updates_article(article_slug):
+        article: Article | None = ARTICLE_LOOKUP.get(article_slug)
+
+        if article is None:
+            return "Article not found", 404
+
+        g.head = g.head.extend(
+            [
+                e.Page(
+                    title=f"{article.title} | Python Scotland",
+                    description=f"Stay updated with the latest at Python Scotland.",
+                    keywords=["Python", "Scotland", "Community", "Updates", "Events"],
+                ),
+                e.SocialMediaCard(
+                    title=f"{article.title} | Python Scotland",
+                    description="Stay updated with the latest at Python Scotland.",
+                    url=f"https://python.scot/updates/{article_slug}",
+                    **OPEN_GRAPH
+                )
+            ]
+        )
+
+        return render_template("pages/updates-article.html", article_slug=article_slug, article=article)
 
     @app.route("/get-involved")
     def get_involved():
@@ -64,6 +112,12 @@ def create_app():
                     description="Join Python Scotland's community and contribute to our mission of promoting Python in Scotland.",
                     keywords=["Python", "Scotland", "Community", "Contribute", "Participate"],
                 ),
+                e.SocialMediaCard(
+                    title="Get Involved | Python Scotland",
+                    description="Stay updated with the latest at Python Scotland.",
+                    url=f"https://python.scot/get-involved",
+                    **OPEN_GRAPH
+                )
             ]
         )
         return render_template("pages/get-involved.html")
@@ -74,9 +128,15 @@ def create_app():
             [
                 e.Page(
                     title="Code of Conduct | Python Scotland",
-                    description="Python Scotland is committed to fostering a welcoming and inclusive community. Read our Code of Conduct to understand our expectations for all participants.",
+                    description="Understand our expectations for all participants at Python Scotland.",
                     keywords=["Python", "Scotland", "Community", "Code of Conduct", "Conduct"],
                 ),
+                e.SocialMediaCard(
+                    title="Code of Conduct | Python Scotland",
+                    description="Understand our expectations for all participants at Python Scotland.",
+                    url=f"https://python.scot/code-of-conduct",
+                    **OPEN_GRAPH
+                )
             ]
         )
         return render_template("pages/code-of-conduct.html")
