@@ -11,7 +11,9 @@ ARTICLE_LOOKUP: dict[str, Article] = {
                    "Picture of David from Python Scotland and Stephen from Kubenet",
                    250),
             PTag(
-                "Massive thanks to <a href='https://www.kubenet.net/' target='_blank'>Kubenet</a> and "
+                "Massive thanks to <a href='https://www.linkedin.com/in/stephen-barraclough-7694224a/'>"
+                "Stephen Barraclough</a> that works at "
+                "<a href='https://www.kubenet.net/' target='_blank'>Kubenet</a> and "
                 "<a href='https://www.electralearning.com/' target='_blank'>Electra Learning</a> for "
                 "their generous donation of laptops to support our Python workshops!"
             ),
