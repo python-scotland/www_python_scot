@@ -13,7 +13,7 @@ ARTICLE_LOOKUP: dict[str, Article] = {
             PTag(
                 "Massive thanks to <a href='https://www.linkedin.com/in/stephen-barraclough-7694224a/' target='_blank'>"
                 "Stephen Barraclough</a> that works at "
-                "<a href='https://www.kubenet.net/' target='_blank'>Kubenet</a> and "
+                "<a href='https://www.kubenet.net/' target='_blank'>Kubenet</a>, and also "
                 "<a href='https://www.electralearning.com/' target='_blank'>Electra Learning</a> for "
                 "their generous donation of laptops to support our Python workshops!"
             ),
