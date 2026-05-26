@@ -13,14 +13,20 @@ The python.scot website.
 
 ### Development Environment
 
+(uv and npm are required)
+
 Install environment
 
 ```bash
 uv sync
 ```
 
+```bash
+npm i
+```
+
 Run Flask + Tailwindcss
 
 ```bash
-qwe dev
+uv run qwe dev
 ```
