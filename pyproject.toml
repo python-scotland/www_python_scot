@@ -11,7 +11,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "pyqwe>=3.1.1",
+    "pyqwe>=3.1.2",
 ]
 
 [tool.pyqwe]
