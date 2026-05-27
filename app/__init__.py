@@ -173,7 +173,13 @@ def create_app():
                     png_mstile_310x150_href="/favicons/mstile-310x150.png",
                     png_mstile_310_href="/favicons/mstile-310x150.png"
                 ),
-                e.Stylesheet(url_for("static", filename="css/main.css"))
+                e.Stylesheet(url_for("static", filename="css/main.css")),
+                e.SocialMediaCard(
+                    title="Python Scotland",
+                    description="A community of Python enthusiasts in Scotland. Join us for events, workshops, and more.",
+                    url=f"https://python.scot",
+                    **OPEN_GRAPH
+                )
             ]
         )
 
